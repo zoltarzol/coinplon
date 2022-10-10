@@ -19,7 +19,7 @@ class HomePage(Page):
     )
     button_text = models.CharField(
         max_length=50,
-        default= "En savoir plus...",
+        default= "Read more",
         blank=False,
         help_text="Bouton pour le texte",
     )
