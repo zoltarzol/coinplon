@@ -1,9 +1,11 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
+from django.forms import URLField
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 
 class ServicesListingPage(Page):
+    template = "services/services_listing_page.html",
     subtitle = models.TextField(
         blank = True,
         max_length = 500
@@ -13,6 +15,7 @@ class ServicesListingPage(Page):
     ]
 
 class ServicePage(Page):
+    template = "services/service_page.html",
     description = models.TextField(
         blank=True,
         max_length=500
@@ -41,7 +44,7 @@ class ServicePage(Page):
     )
     content_panels = Page.content_panels + [
         FieldPanel("description"),
-        PageChooserPanel("internal_page"),
+        FieldPanel("internal_page"),
         FieldPanel("external_page"),
         FieldPanel("button_text"),
         FieldPanel("service_image")

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% block content %}
+  <div class="row mb-3">
+    <div class="col-lg-6">
+      <h1 class="cc-inner-title">{{ page.title }}</h1>
+      <p class="cc-inner-subtitle cc-service-subtitle">
+        {{ page.description }}
+      </p>
+        {% if page.internal_page or page.external_page %}
+        <a href="
+        {% if page.internal_page %}
+            {{page.internal_page.url}}
+        {% elif page.external_page %}
+            {{page.external_page}}
+        {% else %} #
+        {% endif %}"
+        class="btn btn-primary btn-lg mb-2 mb-lg-0">
+            {{ page.button_text }}
+        </a>
+        {% endif %}
+    </div>
+    <div class="col-lg-5">
+      <picture>
+        {% image page.service_image fill-300x200 as stacking_image%}
+        <img src="{{stacking_image.url}}"" style='width:100%; height: auto;'>
+      </picture>
+    </div>
+  </div>
+  
+{% endblock content %}
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoinPlon - Liste des services</title>
+</head>
+<body>
+    <h1>{{ page.title }}</h1>
+    <h3>{{ page.description }}</h3>
+    <p>Internal page: {{ page.internal_page }}</p>
+</body>
+</html> {% endcomment %}
