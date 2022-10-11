@@ -22,8 +22,8 @@
       <div class="card mb-3 text-center">
         <a href="@todo">
             <picture>
-                {% image card.service_image fill-400x300 as stacking_image%}
-                <img src="{{stacking_image.url}}" style='width:100%; height: auto;'>
+                {% image card.service_image fill-400x300 as card_img%}
+                <img src="{{card_img.url}}" style='width:100%; height: auto;'>
             </picture>
         </a>
         <div class="card-body py-3 px-3">
