@@ -17,14 +17,14 @@
         {% else %} #
         {% endif %}"
         class="btn btn-primary btn-lg mb-2 mb-lg-0">
-            {{ page.button_text }}
+            {{page.button_text}}
         </a>
         {% endif %}
     </div>
     <div class="col-lg-5">
       <picture>
-        {% image page.service_image fill-300x200 as stacking_image%}
-        <img src="{{stacking_image.url}}"" style='width:100%; height: auto;'>
+        {% image page.service_image fill-400x300 as stacking_image%}
+        <img src="{{stacking_image.url}}" style='width:100%; height: auto;'>
       </picture>
     </div>
   </div>

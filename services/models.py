@@ -1,21 +1,24 @@
-from unittest.util import _MAX_LENGTH
 from django.db import models
-from django.forms import URLField
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 
 class ServicesListingPage(Page):
-    template = "services/services_listing_page.html",
+    template = 'services/services_listing_page.html'
     subtitle = models.TextField(
-        blank = True,
-        max_length = 500
+        blank=True,
+        max_length=500
     )
     content_panels = Page.content_panels + [
         FieldPanel("subtitle")
     ]
 
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['services'] = ServicePage.objects.live().public()
+        return context
+
+
 class ServicePage(Page):
-    template = "services/service_page.html",
     description = models.TextField(
         blank=True,
         max_length=500
@@ -42,10 +45,11 @@ class ServicePage(Page):
         help_text="Choisir une image pour ce service",
         related_name="+"
     )
+
     content_panels = Page.content_panels + [
         FieldPanel("description"),
-        FieldPanel("internal_page"),
-        FieldPanel("external_page"),
-        FieldPanel("button_text"),
-        FieldPanel("service_image")
+        FieldPanel('internal_page'),
+        FieldPanel('external_page'),
+        FieldPanel('button_text'),
+        FieldPanel('service_image'), 
     ]
