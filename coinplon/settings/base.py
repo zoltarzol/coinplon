@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     "services", #ajout de l'application 'services'
     "flex", #ajout de l'application 'flex'
     "testimonials", #ajout de l'application 'testimonials'
+    "streams",
+    "wagtail.contrib.styleguide",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.modeladmin",

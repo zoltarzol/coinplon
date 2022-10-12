@@ -21,9 +21,13 @@
                             <a href="#" class="btn btn-light btn-lg">{{page.button_text}}</a>
                         </p>
                         {% endif %}
-
                 </div>
             </div>
         </class>
     </div>
-    {% endblock banner %}
+
+    {% for block in page.body %}
+        {{block}}
+    {% endfor %}
+
+{% endblock banner %}

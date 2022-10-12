@@ -1,6 +1,7 @@
 from django.db import models
+from wagtail.snippets.models import register_snippet
 
-# Create your models here.
+@register_snippet
 class Testimonials(models.Model):
     quote = models.TextField(
         max_length = 500,
@@ -15,8 +16,8 @@ class Testimonials(models.Model):
     )
 
     def __str__(self):
-        return "test" #self.name
+        return f"{self.quote} par {self.author}"
     
     class Meta:                                     #  code pour
-            verbose_name="Testimonial"              #  renommer
-            verbose_name_plural="Testimonials"      #  les champs (Admin UI)
+        verbose_name="Testimonial"              #  renommer
+        verbose_name_plural="Testimonials"      #  les champs (Admin UI)

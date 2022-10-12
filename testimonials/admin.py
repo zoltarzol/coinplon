@@ -6,7 +6,7 @@ from .models import Testimonials
 class TestimonialsAdmin(ModelAdmin):
     model = Testimonials
     menu_label = "Testimonials"
-    menu_icon = "placeholder"
+    menu_icon = "openquote"
     menu_order = 290
     add_to_settings_menu = False
     exclude_from_explorer = False
