@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 
@@ -44,6 +45,7 @@ class ServicePage(Page):
         on_delete=models.SET_NULL,
         help_text="Choisir une image pour ce service",
         related_name="+"
+
     )
 
     content_panels = Page.content_panels + [
@@ -53,3 +55,17 @@ class ServicePage(Page):
         FieldPanel('button_text'),
         FieldPanel('service_image'), 
     ]
+
+    def clean(self):
+        super().clean()
+
+        if self.internal_page and self.external_page:
+            raise ValidationError({
+                'internal_page' : ValidationError('Sélectionnez un lien interne OU un lien externe'),
+                'external_page' : ValidationError('Sélectionnez un lien interne OU un lien externe')
+            })
+        if not self.internal_page and not self.external_page:
+            raise ValidationError({
+                'internal_page' : ValidationError('Vous dever sélectionnez un lien interne OU un lien externe'),
+                'external_page' : ValidationError('Vous dever sélectionnez un lien interne OU un lien externe')
+            })
